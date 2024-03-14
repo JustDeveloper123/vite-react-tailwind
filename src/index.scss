@@ -1,0 +1,19 @@
+// Підключення TailwindCSS (автоматично скидає стилі)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Глобальні стилі всього проекту
+:root {
+  font-family: sans-serif, Arial, Helvetica, system-ui;
+  font-size: 16px;
+
+  color: black;
+  background-color: white;
+}
+
+@layer components {
+  .input {
+    @apply pointer-events-none w-full text-center text-2xl font-bold text-violet-500;
+  }
+}
