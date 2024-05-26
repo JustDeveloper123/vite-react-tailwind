@@ -1,0 +1,58 @@
+//# Fonts
+
+//# Variables
+//^ Font
+$fontSize: 16px;
+$fontFamily: sans-serif, 'Helvetica', system-ui;
+
+//^ Template
+$fontColor: black;
+$bgColor: white;
+
+:root {
+  --primary-layout-color: #0284c7;
+  --primary-font-color: white;
+  --primary-decor-color: #a5f3fc;
+}
+
+//# TailwindCSS
+@layer components {
+  .primary-input {
+    @apply pointer-events-none w-full text-center text-2xl font-bold text-violet-600;
+  }
+  .primary-button {
+    @apply cursor-pointer self-center rounded-md bg-[#cecece] px-4 py-2 text-lg font-bold text-violet-600 transition duration-100 hover:brightness-90;
+  }
+}
+
+//# Common Styles
+body {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  color: $fontColor;
+  background-color: $bgColor;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+a:focus-visible,
+input:focus-visible,
+button:focus-visible {
+  box-shadow:
+    0 0 0 1px white,
+    0 0 0 2px black;
+}
+
+//# Common Classes
+._container {
+  max-width: $px-contWidthSum;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $px-contPadWidth;
+}

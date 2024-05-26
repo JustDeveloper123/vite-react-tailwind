@@ -1,0 +1,31 @@
+//! Імпортуємо даний файл в потрібні файли стилів для того щоб отримати доступ до змінних
+
+//# Розміри екрану
+$contWidth: 1280; // Ширина основного контейнеру
+$contPadWidth: 20; // Ширина відступу контейнеру
+$contWidthSum: calc($contWidth + ($contPadWidth * 2)); // Сума ширини контейнеру
+$mobileWidth: 320; // Мінімальна ширина екрану
+
+$mobile-320: 320;
+$mobile-480: 480;
+$tablet-640: 640;
+$tablet-768: 768;
+$laptop-1024: 1024;
+$pc-1280: 1280;
+$pc-1600: 1600;
+$pc-1920: 1920;
+
+//# Breakpoints (розміри екрану в пікселях)
+$px-contWidth: #{$contWidth}px; // Ширина основного контейнеру
+$px-contPadWidth: #{$contPadWidth}px; // Ширина відступу контейнеру
+$px-contWidthSum: #{$contWidthSum}px; // Сума ширини контейнеру
+$px-mobileWidth: #{$mobileWidth}px; // Мінімальна ширина екрану
+
+$px-mobile-320: #{$mobile-320}px;
+$px-mobile-480: #{$mobile-480}px;
+$px-tablet-640: #{$tablet-640}px;
+$px-tablet-768: #{$tablet-768}px;
+$px-laptop-1024: #{$laptop-1024}px;
+$px-pc-1280: #{$pc-1280}px;
+$px-pc-1600: #{$pc-1600}px;
+$px-pc-1920: #{$pc-1920}px;
