@@ -2,6 +2,33 @@ import { Navigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import PostPage from '../pages/PostPage';
 
+const ROUTES = {
+  // new path requires keys: path, element, index*, props*
+  // new path string has to start with "/" (slash)
+
+  public: {
+    404: {
+      path: '/*',
+      element: Navigate,
+      props: {
+        to: '/',
+      },
+    },
+    home: { path: '/', element: HomePage, index: true },
+    post: { path: '/post/:id', element: PostPage },
+  },
+
+  // This function gets a static path for redirecting or other cases. Simply explanation: /post/:id => /post
+  // Using: ROUTES.extractStaticPath(r => r.public.post). It returns /post, as example we can add some id: '/post' + `/${id}`
+  extractStaticPath(callback) {
+    const { path } = callback(this);
+    const staticPath =
+      path.indexOf(':') === -1 ? path : path.slice(0, path.indexOf(':') - 1);
+    return staticPath;
+  },
+};
+
+// Base of project if we have
 const { VITE_BASE } = import.meta.env;
 
 // This function recursively adds a base URL for paths
@@ -26,32 +53,7 @@ function combinePathWithBase(obj, baseUrl) {
   }
 }
 
-const ROUTES = {
-  // This function gets a static path for redirecting or other cases. Simply explanation: /post/:id => /post
-  // Using: ROUTES.extractStaticPath(r => r.public.post). It returns /post, as example we can add some id: '/post' + `/${id}`
-  extractStaticPath(callback) {
-    const { path } = callback(this);
-    const staticPath =
-      path.indexOf(':') === -1 ? path : path.slice(0, path.indexOf(':') - 1);
-    return staticPath;
-  },
-
-  // new path requires keys: path, element, index*, props*
-  // new path string has to start with "/" (slash)
-
-  public: {
-    404: {
-      path: '/*',
-      element: Navigate,
-      props: {
-        to: '/',
-      },
-    },
-    home: { path: '/', element: HomePage, index: true },
-    post: { path: '/post/:id', element: PostPage },
-  },
-};
-
+// Modifying paths if we need
 combinePathWithBase(ROUTES, VITE_BASE.slice(0, VITE_BASE.length - 1));
 
 export { ROUTES };

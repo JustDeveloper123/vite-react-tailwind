@@ -3,8 +3,7 @@ module.exports = {
     require('postcss-sort-media-queries')({
       sort: 'desktop-first', // sort: mobile-first | desktop-first | custom function
     }),
-    require('autoprefixer'), // підтримка стилів визначається в package.json ключем "browserslist", найбільш поширене значення "cover 99.5%"
-    // Також, autoprefixer сам по собі може бути підключений в конфігу Vite не прописуючи його в цьому файлі. В інтернеті є інформація
+    require('autoprefixer'), // styles support defines in package.json by key "browserslist", the most common value is "cover 99.5%" (supports old browsers)
     require('tailwindcss'),
   ],
 };
