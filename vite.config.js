@@ -2,51 +2,60 @@ import react from '@vitejs/plugin-react';
 import imagemin from 'imagemin';
 import imageminWebp from 'imagemin-webp';
 import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 
+const r = path => resolve(__dirname, path);
+
 // https://vitejs.dev/config/
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
   return {
-    base: '/vite-react-tailwind/', // назва репозиторію для деплою на GitHub Actions
-    envPrefix: 'APP_',
+    appType: 'spa',
+    root: '.',
+    base: env.VITE_BASE, // repo name for GitHub Actions deployment (optional)
+    publicDir: 'public',
+    envDir: '.',
+    envPrefix: 'VITE_',
 
-    //# Aliases
     resolve: {
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      alias: {
-        '@': resolve(__dirname, './src'),
-        '@components': resolve(__dirname, './src/components'),
-        '@assets': resolve(__dirname, './src/assets'),
-        '@utils': resolve(__dirname, './src/utils'),
-        '@ui': resolve(__dirname, './src/components/ui'),
-        '@store': resolve(__dirname, './src/store'),
-        '@hooks': resolve(__dirname, './src/hooks'),
-      },
+      extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json'],
+      // alias: {
+      //   '@': r('./src'),
+      //   '@pages': r('./src/pages'),
+      //   '@components': r('./src/components'),
+      //   '@assets': r('./src/assets'),
+      //   '@utils': r('./src/utils'),
+      //   '@ui': r('./src/ui'),
+      //   '@store': r('./src/store'),
+      //   '@hooks': r('./src/hooks'),
+      //   '@constants': r('./src/constants'),
+      //   '@providers': r('./src/providers'),
+      // },
     },
 
-    //# Production
     build: {
-      outDir: 'build',
+      outDir: 'dist',
     },
 
-    //# Developer server
     server: {
       port: 3000,
       strictPort: false,
+      open: false,
     },
-    //# Production server
+
     preview: {
       port: 8080,
       strictPort: false,
+      open: false,
     },
 
-    //# Plugins
     plugins: [
       react(),
 
-      // Оптимізація фото (по бажанню)
-      // Плагін має свою готову конфігурацію, ми можемо змінювати налаштування, для різних форматів фото тощо
+      // Image optimizer
+      // The plugin has its own config but we can modify it if we needed, as example is to set more formats
       // https://github.com/FatehAK/vite-plugin-image-optimizer
       ViteImageOptimizer({
         png: {
@@ -60,19 +69,29 @@ export default defineConfig(() => {
         },
       }),
 
-      // Конвертація фото в webp формат при потребі. Якщо не треба то видаляємо скрипт нижче. Не забути видалити непотрібні пакети!
-      // Скрипт для конвертації в .webp формат, створює нову папку, по якій можна діставати оброблені картинки
-      // Для скрипту потрібно встановити додаткові плагіни: npm install -D imagemin imagemin-webp . Звісно, імпортуємо в конфіг
+      // (optional) To Webp Converter Script.
+      // Use only if needed to convert images to webp.
+      // How to uninstall: Remove the object below and enter this command into CLI: npm uninstall imagemin imagemin-webp
+      // Important! Script is working only on server start (restart)
       {
         ...imagemin(
-          ['./public/**/*.{jpg,png,jpeg}'], // шлях до фото для обробки в webp
+          ['./public/images/*.{jpg,png,jpeg}'], // path where images are located
           {
-            destination: './public/webp', // шлях конвертованих фото
-            plugins: [imageminWebp({ quality: 70 })], // якість конвертації
+            destination: './public/webp', // destination folder of converted images
+            plugins: [imageminWebp({ quality: 70 })], // overall conversion quality
           },
         ),
         apply: 'serve',
       },
     ],
+
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // A setting to hide console warning about legacy JS API
+          silenceDeprecations: ['legacy-js-api'],
+        },
+      },
+    },
   };
 });

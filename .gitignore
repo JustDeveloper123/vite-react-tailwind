@@ -8,16 +8,17 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-build
+dist
 dist-ssr
 *.local
 
-#! Delete this is we do not use the webp script in vite config file
-# Optimized files (if we have the script in vite config for this)
-public/img/
+# Images for conversion
+public/images/*
+!public/**/secured
 
 # Editor directories and files
 .vscode/*
+!.vscode/default.code-snippets
 !.vscode/extensions.json
 .idea
 .DS_Store

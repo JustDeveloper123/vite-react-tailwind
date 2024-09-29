@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { counterReducer } from './reducers';
 
 const reducer = combineReducers({
-  counter: counterReducer,
+  // here you need to place reducers
 });
 
+// Use this function to create a store
 export const setupStore = () => {
   return configureStore({
     reducer,

@@ -1,0 +1,29 @@
+@use 'sass:math';
+@import './app.scss';
+@import './screens.scss';
+
+// From px to rem
+@function rem($value) {
+  $remValue: math.div($value, $font-size-px) + rem;
+  @return $remValue;
+}
+
+// Responsive property
+@mixin resp-prop(
+  $property: font-size,
+  $startValue: 18,
+  $endValue: 12,
+  $maxBreakpoint: $container-width-px,
+  $minBreakpoint: $container-mobile-px
+) {
+  & {
+    #{$property}: rem($startValue);
+
+    @media (max-width: rem($maxBreakpoint)) {
+      #{$property}: calc(
+        (#{rem($endValue)}) + ($startValue - $endValue) *
+          ((100vw - #{rem($minBreakpoint)}) / ($maxBreakpoint - $minBreakpoint))
+      );
+    }
+  }
+}

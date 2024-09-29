@@ -1,0 +1,16 @@
+{
+  "PX to REM": {
+    "scope": "scss",
+    "prefix": "re",
+    "body": ["${1:font-size}: rem(${2:16});"],
+    "description": "PX to REM conversion function.",
+  },
+  "Responsive Property": {
+    "scope": "scss",
+    "prefix": "rs",
+    "body": [
+      "@include resp-prop(${1:font-size}, ${2}, ${3}, var(--container-width), var(--container-mobile));",
+    ],
+    "description": "Responsive property. Soft changing value of css property from max to min. From max breakpoint to min.",
+  },
+}

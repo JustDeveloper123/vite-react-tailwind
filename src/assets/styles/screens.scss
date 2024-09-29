@@ -1,0 +1,27 @@
+// Breakpoints & Screens
+
+$container-width-px: 1440; // width of the main container in px
+$container-mobile-px: 375; // mobile width of the main container in px
+$container-padding-x-max-px: 52; // max padding-x size of the container
+$container-padding-x-min-px: 20; // min padding-x size of the container
+
+:root {
+  --container-width: #{$container-width-px}px;
+  --container-padding-x-max: #{$container-padding-x-max-px}px;
+  --container-padding-x-min: #{$container-padding-x-min-px}px;
+  --container-sum: calc(
+    var(--container-width) + (var(--container-padding-x) * 2)
+  );
+  --container-mobile: #{$container-mobile-px}px;
+
+  // Same variables are placed in tailwind config. Deleting or changing it does not affect the tailwind variables
+  --screen-mobile-320: 320px;
+  --screen-mobile-480: 480px;
+  --screen-tablet-640: 640px;
+  --screen-tablet-768: 768px;
+  --screen-laptop-860: 860px;
+  --screen-laptop-1024: 1024px;
+  --screen-pc-1280: 1280px;
+  --screen-pc-1600: 1600px;
+  --screen-pc-1920: 1920px;
+}

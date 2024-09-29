@@ -1,0 +1,19 @@
+@import '../../assets/styles/screens.scss';
+@import '../../assets/styles/mixins.scss';
+
+.container {
+  @include resp-prop(
+    padding-left,
+    $container-padding-x-max-px,
+    $container-padding-x-min-px,
+    $container-width-px,
+    $container-mobile-px
+  );
+  @include resp-prop(
+    padding-right,
+    $container-padding-x-max-px,
+    $container-padding-x-min-px,
+    $container-width-px,
+    $container-mobile-px
+  );
+}
