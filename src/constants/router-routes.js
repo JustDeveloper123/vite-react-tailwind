@@ -42,7 +42,6 @@ function combinePathWithBase(obj, baseUrl) {
 
     // Modify the 'path' property if it exists
     if (key === 'path' && typeof obj[key] === 'string') {
-      console.log(`${baseUrl}${obj[key]}`);
       obj[key] = `${baseUrl}${obj[key]}`;
     }
 
