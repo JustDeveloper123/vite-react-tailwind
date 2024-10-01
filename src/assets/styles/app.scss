@@ -3,11 +3,13 @@ $font-size-px: 16;
 $font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
   'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
+// Defining global variables
 :root {
   --font-size: #{$font-size-px}px;
   --font-family: #{$font-family};
 }
 
+// Styling global properties
 html {
   font-family: var(--font-family);
   font-size: var(--font-size);

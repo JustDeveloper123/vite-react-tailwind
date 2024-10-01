@@ -30,7 +30,6 @@ const changeTheme = toTheme => {
 };
 
 const HomePage = () => {
-  //!!! add container CVA
   return (
     <Container
       variant={'tablet'}
