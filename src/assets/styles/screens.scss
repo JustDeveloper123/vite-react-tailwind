@@ -1,20 +1,54 @@
-// Breakpoints & Screens
+// Container
 
-$container-width-px: 1440; // width of the main container in px
+$container-width-px: 1336; // width of the main container in px
 $container-mobile-px: 375; // mobile width of the main container in px
 $container-padding-x-max-px: 52; // max padding-x size of the container
 $container-padding-x-min-px: 20; // min padding-x size of the container
 
+// Container Auto Calculations
+$container-sum-px: $container-width-px + ($container-padding-x-max-px * 2); // sum of the main container and padding in px
+$container-padding-x-current-px: calc(
+  (#{$container-padding-x-min-px}px) +
+    ($container-padding-x-max-px - $container-padding-x-min-px) *
+    (
+      (100vw - #{$container-mobile-px}px) /
+        ($container-sum-px - $container-mobile-px)
+    )
+); // current padding width value in px
+$container-padding-x-current-sum-px: calc($container-padding-x-current-px * 2);
+
+// Breakpoints
+// Same variables are located in tailwind config. Deleting or changing it does not affect the tailwind variables
+$screen-mobile-320-px: 320;
+$screen-mobile-480-px: 480;
+$screen-tablet-640-px: 640;
+$screen-tablet-768-px: 768;
+$screen-laptop-860-px: 860;
+$screen-laptop-1024-px: 1024;
+$screen-pc-1280-px: 1280;
+$screen-pc-1600-px: 1600;
+$screen-pc-1920-px: 1920;
+
+$screen-mobile-320: 320px;
+$screen-mobile-480: 480px;
+$screen-tablet-640: 640px;
+$screen-tablet-768: 768px;
+$screen-laptop-860: 860px;
+$screen-laptop-1024: 1024px;
+$screen-pc-1280: 1280px;
+$screen-pc-1600: 1600px;
+$screen-pc-1920: 1920px;
+
+// Duplicating SCSS variables above to global CSS variables
 :root {
   --container-width: #{$container-width-px}px;
+  --container-mobile: #{$container-mobile-px}px;
   --container-padding-x-max: #{$container-padding-x-max-px}px;
   --container-padding-x-min: #{$container-padding-x-min-px}px;
-  --container-sum: calc(
-    var(--container-width) + (var(--container-padding-x) * 2)
-  );
-  --container-mobile: #{$container-mobile-px}px;
+  --container-sum: #{$container-sum-px}px;
+  --container-padding-x-current: #{$container-padding-x-current-px};
+  --container-padding-x-current-sum: #{$container-padding-x-current-sum-px};
 
-  // Same variables are placed in tailwind config. Deleting or changing it does not affect the tailwind variables
   --screen-mobile-320: 320px;
   --screen-mobile-480: 480px;
   --screen-tablet-640: 640px;

@@ -9,7 +9,7 @@
     "scope": "scss",
     "prefix": "rs",
     "body": [
-      "@include resp-prop(${1:font-size}, ${2}, ${3}, var(--container-width), var(--container-mobile));",
+      "@include resp-prop(${1:font-size}, ${2}, ${3}, \\$container-sum-px, \\$container-mobile-px);",
     ],
     "description": "Responsive property. Soft changing value of css property from max to min. From max breakpoint to min.",
   },

@@ -1,19 +1,32 @@
 @import '../../assets/styles/screens.scss';
 @import '../../assets/styles/mixins.scss';
 
-.container {
+%padding-x {
   @include resp-prop(
     padding-left,
     $container-padding-x-max-px,
     $container-padding-x-min-px,
-    $container-width-px,
+    $container-sum-px,
     $container-mobile-px
   );
   @include resp-prop(
     padding-right,
     $container-padding-x-max-px,
     $container-padding-x-min-px,
-    $container-width-px,
+    $container-sum-px,
     $container-mobile-px
   );
+}
+
+.container {
+  @extend %padding-x;
+}
+
+.container_tablet {
+  @extend %padding-x;
+
+  @media screen and (min-width: calc($screen-tablet-768 + $container-padding-x-current-sum-px)) {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

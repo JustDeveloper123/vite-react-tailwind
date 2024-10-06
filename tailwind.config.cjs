@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 const breakpoints = {
-  container: 'var(--container-width)',
+  container: 'var(--container-sum)',
   mobile: 'var(--container-mobile)',
   'mobile-320': '320px',
   'mobile-480': '480px',
