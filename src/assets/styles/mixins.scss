@@ -13,7 +13,7 @@
   $property: font-size,
   $startValue: 18,
   $endValue: 12,
-  $maxBreakpoint: $container-width-px,
+  $maxBreakpoint: $container-sum-px,
   $minBreakpoint: $container-mobile-px
 ) {
   & {
